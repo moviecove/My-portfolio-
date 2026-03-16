@@ -1,0 +1,369 @@
+/* =========================
+   Global Styles
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* =========================
+   Hero layout
+========================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.left {
+  animation: fadeUp 1.5s ease;
+}
+
+.left h1 {
+  font-size: 30px;
+  opacity: 0.8;
+}
+
+.left h2 {
+  font-size: 60px;
+  color: #38bdf8;
+  margin-top: 5px;
+}
+
+.left h3 {
+  margin-top: 15px;
+  font-size: 28px;
+  height: 35px;
+}
+
+/* Profile Image */
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 20px 0;
+}
+
+/* CEO Description */
+.ceo-description {
+  margin-top: 15px;
+  opacity: 0.7;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+/* Flip Button */
+.flip-button-container {
+  perspective: 1000px;
+  margin-top: 20px;
+}
+
+.flip-button {
+  width: 180px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.flip-button.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-button span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  font-weight: bold;
+  border-radius: 30px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.flip-button span.back {
+  transform: rotateY(180deg);
+  background: white;
+  color: #38bdf8;
+}
+
+/* NextGen Labs Button */
+.animated-btn {
+  margin-top: 25px;
+  padding: 14px 40px;
+  border-radius: 30px;
+  border: 2px solid #38bdf8;
+  background: transparent;
+  color: #38bdf8;
+  font-weight: bold;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.animated-btn:hover {
+  background: #38bdf8;
+  color: #0f172a;
+  transform: scale(1.1);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Right Side (Canvas) */
+.right {
+  position: relative;
+  animation: fadeIn 2s ease;
+}
+
+canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(56,189,248,0.6), 0 0 80px rgba(56,189,248,0.3);
+  display: block;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
+/* Typing Cursor */
+#typing {
+  border-right: 3px solid #38bdf8;
+  padding-right: 6px;
+  color: #38bdf8;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero { flex-direction: column; text-align: center; gap: 50px; }
+  .left h2 { font-size: 45px; }
+  .profile-img { margin: 15px auto; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 20px; gap: 30px; }
+  .left h1 { font-size: 24px; }
+  .left h2 { font-size: 35px; }
+  .left h3 { font-size: 22px; height: auto; }
+  .ceo-description { font-size: 14px; max-width: 100%; }
+  .animated-btn { padding: 12px 30px; font-size: 14px; }
+  .flip-button { width: 150px; height: 45px; }
+  canvas { width: 90% !important; max-width: 300px; height: auto !important; margin: 0 auto; }
+}
+
+/* =========================
+   Projects Section
+========================= */
+.projects {
+  padding: 80px 20px;
+  text-align: center;
+  background: #0e1624;
+}
+
+.projects h2 {
+  font-size: 36px;
+  color: #38bdf8;
+  margin-bottom: 40px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: #1a2235;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card img.project-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
+
+.project-card img.project-img:hover {
+  transform: scale(1.05);
+}
+
+.project-card h3 {
+  color: #38bdf8;
+  margin: 10px 0 5px;
+  font-size: 20px;
+}
+
+.project-card p {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(56,189,248,0.5);
+}
+
+/* Modal / Lightbox */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+  animation: fadeInModal 0.5s;
+}
+
+#modal-caption {
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #38bdf8;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Try It Out Button */
+.try-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 30px;
+  border-radius: 25px;
+  border: 2px solid #38bdf8;
+  background: transparent;
+  color: #38bdf8;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.try-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #38bdf8;
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.try-btn:hover::before {
+  left: 0;
+}
+
+.try-btn:hover {
+  color: #0f172a;
+  transform: scale(1.05);
+}
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* center on mobile */
+  gap: 15px;
+}
+
+.social-links a {
+  color: #38bdf8;
+  font-size: 24px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+  color: white;
+  transform: scale(1.2);
+}
