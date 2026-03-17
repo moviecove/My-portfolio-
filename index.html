@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tonys Portfolio</title>
+<!-- Primary Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tony Destiny | Founder & CEO of NextGen Labs</title>
+  <meta name="title" content="Tony Destiny | Founder & CEO of NextGen Labs">
+  <meta name="description" content="Portfolio of Tony Destiny, a Website Developer, UI Designer, Creative Coder & Apk Developer. Showcasing modern, interactive websites and web applications.">
+  <meta name="keywords" content="Tony Destiny, NextGen Labs, Portfolio, Web Developer, UI Designer, Creative Coder, Apk Developer">
+  <meta name="author" content="Tony Destiny">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tonydestiny.netlify.app/">
+  <meta property="og:title" content="Tony Destiny | Founder & CEO of NextGen Labs">
+  <meta property="og:description" content="Check out the portfolio of Tony Destiny, specializing in modern websites and web apps with sleek design and functionality.">
+  <meta property="og:image" content="https://tonydestiny.netlify.app/profile.jpg">
+  <meta property="og:image:alt" content="Tony Destiny | NextGen Labs">
+  <meta property="og:site_name" content="NextGen Labs">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tonydestiny.netlify.app/">
+  <meta name="twitter:title" content="Tony Destiny | Founder & CEO of NextGen Labs">
+  <meta name="twitter:description" content="Portfolio of Tony Destiny, showcasing modern websites and web applications with creativity and innovation.">
+  <meta name="twitter:image" content="https://tonydestiny.netlify.app/profile.jpg">
+  <meta name="twitter:image:alt" content="Tony Destiny | NextGen Labs">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<!-- Font Awesome CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-aV5F2S3syqXYp3Ob+M5wXfS/+A77ST2n6gk7ixKpKq/MbzPq9rK1lfZVLwUklUKBf6i/E6P8hH+Vr2Q3c5Gxw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+  <div class="left">
+    <h1>Hello I'm</h1>
+    <h2>Tony Destiny</h2>
+    <h3><span id="typing"></span></h3>
+
+    <!-- Profile image -->
+    <img src="profile.jpg" alt="Profile Image" class="profile-img">
+
+<!-- Social Icons -->
+<div class="social-links">
+  <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
+  <a href="https://linkedin.com/in/YourProfile" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="https://twitter.com/YourHandle" target="_blank"><i class="fab fa-twitter"></i></a>
+  <a href="https://facebook.com/YourProfile" target="_blank"><i class="fab fa-facebook"></i></a>
+</div>
+
+    <!-- CEO description -->
+    <p class="ceo-description">
+      Founder & CEO of NextGen Labs. At NextGen Labs, we specialize in crafting modern, interactive websites and web applications that combine sleek design with seamless functionality. From conceptualization to deployment, I lead a passionate team to transform ideas into digital experiences that engage, inspire, and perform. Innovation, creativity, and user-centered design are at the heart of everything we do.
+    </p>
+
+    <!-- Flip Button -->
+    <div class="flip-button-container">
+      <button id="flip-button" class="flip-button">
+        <span class="front">View Projects</span>
+        <span class="back">Go Down</span>
+      </button>
+    </div>
+
+    <!-- NextGen Labs animated button -->
+    <a href="https://www.nextgenlabs.com" target="_blank" class="animated-btn">NextGenLabs</a>
+  </div>
+
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects">
+  <h2>My Projects</h2>
+  <div class="project-grid">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="project1.png" alt="QR code Generator" class="project-img">
+      <h3>QR Code Generator</h3>
+      <p>A sleek, interactive portfolio website showcasing my web development and UI/UX design skills.</p>
+      <a href="https://qr-code-generate-1.netlify.app" target="_blank" class="try-btn">Try It Out</a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="project2.png" alt="CGPA Calculator" class="project-img">
+      <h3>CGPA Calculator</h3>
+      <p>Instant GPA & CGPA Calculator – Track your grades, save semesters, and download reports in seconds!</p>
+      <a href="https://calculate-semester-cgpa.netlify.app/" target="_blank" class="try-btn">Try It Out</a>
+    </div>
+
+    <!-- Add more projects similarly -->
+
+  </div>
+</section>
+
+<!-- Modal for enlarged image -->
+<div id="modal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modal-img">
+  <div id="modal-caption"></div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  // Flip button automatic flip every 6s
+  const flipBtn = document.getElementById("flip-button");
+  setInterval(() => {
+    flipBtn.classList.toggle("flipped");
+  }, 6000);
+
+  // Scroll to projects on click
+  flipBtn.addEventListener("click", () => {
+    document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // Scroll fade-in for project cards
+  const projectCards = document.querySelectorAll(".project-card");
+  function revealProjects() {
+    const triggerBottom = window.innerHeight * 0.85;
+    projectCards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      if(cardTop < triggerBottom) card.classList.add("visible");
+    });
+  }
+  window.addEventListener("scroll", revealProjects);
+  window.addEventListener("load", revealProjects);
+</script>
+</body>
+</html>
